@@ -7,8 +7,8 @@
     <meta name="description" content="Share and discover documents, presentations, and research across University, School, College, and specialized Law fields.">
     <!-- Link to Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Link to Google Adsense (Replace PUBLISHER_ID with your own) -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_PUBLISHER_ID" crossorigin="anonymous"></script>
+    <!-- Link to Google Adsense (ca-app-pub-8123763654650570~3731172424) -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-app-pub-8123763654650570~3731172424" crossorigin="anonymous"></script>
     <style>
         /* ===== CSS Reset & Base Styles ===== */
         * {
@@ -965,7 +965,7 @@
                 if (fileInput.files.length > 0) {
                     fileNameEl.textContent = `Selected: ${fileInput.files[0].name}`;
                     fileUploadArea.style.borderColor = '#4361ee';
-                    fileUploadArea.style.backgroundColor = '#eef2ff';
+                    fileUploadArea.style.backgroundColor = '#eef2
                 }
             });
             
