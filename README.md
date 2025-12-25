@@ -1,1 +1,1521 @@
-# KnowledgeNexus
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnowledgeHub | Document Sharing Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a56d4;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #e63946;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #f5f7fb;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .logo i {
+            font-size: 1.8rem;
+        }
+
+        .main-nav {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+            color: white;
+            padding: 4rem 0;
+            border-radius: 0 0 2rem 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Platform Overview Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Categories Section */
+        .categories-section {
+            background-color: white;
+            padding: 3rem 0;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .categories-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.8rem;
+            background-color: var(--light-gray);
+            border: none;
+            border-radius: 50px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .tab-btn:hover:not(.active) {
+            background-color: #d8d8d8;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .subject-card {
+            background-color: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .subject-card:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-3px);
+        }
+
+        .subject-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Document Upload Section */
+        .upload-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .upload-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--primary);
+            border-radius: var(--border-radius);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .upload-area:hover {
+            background-color: rgba(67, 97, 238, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: 'Roboto', sans-serif;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .search-container {
+            display: flex;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.9rem 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius) 0 0 var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .search-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .search-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .search-results {
+            margin-top: 2rem;
+        }
+
+        .document-card {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            transition: var(--transition);
+        }
+
+        .document-card:hover {
+            box-shadow: var(--box-shadow);
+        }
+
+        .doc-icon {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-right: 1.5rem;
+        }
+
+        .doc-info {
+            flex: 1;
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* AI Features Section */
+        .ai-features {
+            background: linear-gradient(to right, #3a0ca3, #4361ee);
+            color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+        }
+
+        .ai-features h2 {
+            color: white;
+        }
+
+        .ai-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .ai-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Ads Section */
+        .ads-section {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .ad-container {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 1.5rem;
+        }
+
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .ad-space {
+            height: 100px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+            color: var(--gray);
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .ad-space.horizontal {
+            height: 90px;
+        }
+
+        .ad-space.vertical {
+            height: 250px;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background-color: white;
+            padding: 3rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 2rem;
+        }
+
+        .architecture-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+
+        .service-node {
+            background-color: var(--primary);
+            color: white;
+            padding: 1.5rem 2rem;
+            border-radius: var(--border-radius);
+            margin: 1rem 0;
+            width: 80%;
+            text-align: center;
+            position: relative;
+        }
+
+        .service-node::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 1rem;
+            background-color: var(--primary);
+        }
+
+        .service-node:last-child::after {
+            display: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 0 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #b0b0b0;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid #444;
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .upload-details {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav, .user-actions {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-container {
+                padding: 1rem;
+            }
+            
+            .hero {
+                padding: 3rem 1rem;
+                border-radius: 0 0 1.5rem 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+            }
+            
+            .search-input {
+                border-radius: var(--border-radius);
+                margin-bottom: 1rem;
+            }
+            
+            .search-btn {
+                border-radius: var(--border-radius);
+                padding: 0.9rem;
+            }
+            
+            .document-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .doc-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .doc-actions {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: flex-end;
+            }
+            
+            .upload-section, .architecture-section, .ai-features {
+                padding: 2rem 1rem;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-graduation-cap"></i>
+                Knowledge<span>Hub</span>
+            </a>
+            
+            <nav class="main-nav">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#documents" class="nav-link">Documents</a>
+                <a href="#categories" class="nav-link">Categories</a>
+                <a href="#upload" class="nav-link">Upload</a>
+                <a href="#search" class="nav-link">Search</a>
+                <a href="#ai" class="nav-link">AI Tools</a>
+            </nav>
+            
+            <div class="user-actions">
+                <button class="btn btn-outline">Log In</button>
+                <button class="btn btn-primary">Sign Up Free</button>
+            </div>
+            
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Discover, Share, and Learn with KnowledgeHub</h1>
+            <p>Access millions of documents, ebooks, audiobooks, and presentations across all academic levels. Join our ecosystem of learners and educators worldwide.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <button class="btn btn-accent">Explore Documents <i class="fas fa-arrow-right"></i></button>
+                <button class="btn btn-outline" style="background-color: rgba(255,255,255,0.1); color: white; border-color: white;">Try AI Tools</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Overview Section -->
+    <div class="container">
+        <section class="platform-overview">
+            <h2 class="section-title">Our Integrated Ecosystem</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>DocHub</h3>
+                    <p>Document sharing hub with user uploads, public repository, and AI-powered document analysis. Upload PDFs, DOCs, PPTs with format validation and virus scanning.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem;">Free Tier</span>
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem;">Ad-Supported</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>ReadHub</h3>
+                    <p>Subscription service with unlimited access to ebooks, audiobooks, magazines, and sheet music. Includes personalized AI concierge for recommendations.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem;">Premium</span>
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem;">$9.99/month</span>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-presentation"></i>
+                    </div>
+                    <h3>SlideHub</h3>
+                    <p>Presentation sharing platform with seamless integration. Discover and embed presentations across the ecosystem with advanced viewing features.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem; margin-right: 0.5rem;">Included</span>
+                        <span class="tag" style="background-color: #e9ecef; padding: 0.3rem 0.8rem; border-radius: 50px; font-size: 0.85rem;">Free Access</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ad Space -->
+            <div class="ads-section">
+                <div class="ad-container">
+                    <div class="ad-label">Advertisement</div>
+                    <div class="ad-space horizontal">
+                        <!-- Google AdSense Ad Unit -->
+                        <div style="display: flex; flex-direction: column; align-items: center;">
+                            <i class="fas fa-ad" style="font-size: 2rem; color: #ccc; margin-bottom: 0.5rem;"></i>
+                            <div>Google AdSense Ad Unit (728x90)</div>
+                            <div style="font-size: 0.8rem; margin-top: 0.3rem;">Ad Unit ID: ca-pub-123456789</div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #666; text-align: center;">
+                        Advertisement supports our free tier. Upgrade to premium for an ad-free experience.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Categories Section -->
+        <section class="categories-section" id="categories">
+            <h2 class="section-title">Browse by Category</h2>
+            <div class="categories-tabs">
+                <button class="tab-btn active" data-tab="university">University</button>
+                <button class="tab-btn" data-tab="college">College</button>
+                <button class="tab-btn" data-tab="school">School</button>
+            </div>
+            
+            <div class="tab-content active" id="university">
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <h4>Computer Science</h4>
+                        <p>Algorithms, Data Structures, AI, Machine Learning, Software Engineering</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,240 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Business & Economics</h4>
+                        <p>Finance, Marketing, Management, Accounting, Entrepreneurship</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 980 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Engineering</h4>
+                        <p>Mechanical, Electrical, Civil, Chemical, Biomedical Engineering</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,560 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Medicine</h4>
+                        <p>Anatomy, Pharmacology, Surgery, Pathology, Medical Research</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 890 documents
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="college">
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <h4>Arts & Humanities</h4>
+                        <p>Literature, History, Philosophy, Languages, Cultural Studies</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,050 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Natural Sciences</h4>
+                        <p>Biology, Chemistry, Physics, Environmental Science, Geology</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 920 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Social Sciences</h4>
+                        <p>Psychology, Sociology, Political Science, Anthropology, Education</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 760 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Mathematics</h4>
+                        <p>Calculus, Algebra, Statistics, Discrete Math, Applied Mathematics</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,340 documents
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="school">
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <h4>High School STEM</h4>
+                        <p>Mathematics, Biology, Chemistry, Physics, Computer Basics</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,420 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Languages</h4>
+                        <p>English, Spanish, French, German, Writing & Composition</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 1,150 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Social Studies</h4>
+                        <p>History, Geography, Civics, Economics, World Cultures</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 880 documents
+                        </div>
+                    </div>
+                    <div class="subject-card">
+                        <h4>Arts & Electives</h4>
+                        <p>Music, Visual Arts, Physical Education, Health, Technology</p>
+                        <div style="margin-top: 0.8rem; font-size: 0.9rem; color: var(--gray);">
+                            <i class="fas fa-file-alt"></i> 640 documents
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Document Upload Section -->
+        <section class="upload-section" id="upload">
+            <div class="upload-container">
+                <h2 class="section-title">Upload Your Document</h2>
+                <div class="upload-area" id="dropArea">
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drag & Drop Your Files Here</h3>
+                    <p>Supported formats: PDF, DOC, DOCX, PPT, PPTX (Max size: 100MB)</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                        <i class="fas fa-shield-alt"></i> All files are scanned for viruses automatically
+                    </p>
+                    <button class="btn btn-primary" style="margin-top: 1.5rem;" id="browseBtn">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                    <input type="file" id="fileInput" class="file-input" accept=".pdf,.doc,.docx,.ppt,.pptx">
+                </div>
+                
+                <div class="upload-details">
+                    <div class="form-group">
+                        <label for="docTitle">Document Title *</label>
+                        <input type="text" id="docTitle" class="form-control" placeholder="Enter document title">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="docCategory">Category *</label>
+                        <select id="docCategory" class="form-control">
+                            <option value="">Select category</option>
+                            <option value="university">University</option>
+                            <option value="college">College</option>
+                            <option value="school">School</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="docSubject">Subject *</label>
+                        <select id="docSubject" class="form-control">
+                            <option value="">Select subject</option>
+                            <option value="computer-science">Computer Science</option>
+                            <option value="business">Business & Economics</option>
+                            <option value="engineering">Engineering</option>
+                            <option value="medicine">Medicine</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="docTags">Tags (comma separated)</label>
+                        <input type="text" id="docTags" class="form-control" placeholder="e.g., algorithms, data structures, python">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="docDescription">Description *</label>
+                    <textarea id="docDescription" class="form-control" rows="4" placeholder="Describe your document..."></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem;">
+                    <div>
+                        <input type="checkbox" id="termsCheck" checked>
+                        <label for="termsCheck" style="margin-left: 0.5rem;">
+                            I agree to the <a href="#" style="color: var(--primary);">Terms of Service</a> and confirm I have rights to share this document
+                        </label>
+                    </div>
+                    <button class="btn btn-accent" id="uploadBtn">
+                        <i class="fas fa-upload"></i> Upload Document
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Section -->
+        <section class="search-section" id="search">
+            <h2 class="section-title">Search Millions of Documents</h2>
+            <div class="search-container">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search for documents, topics, or authors...">
+                <button class="search-btn" id="searchBtn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </div>
+            
+            <div class="search-results" id="searchResults">
+                <h3 style="margin-bottom: 1.5rem;">Popular Documents</h3>
+                
+                <div class="document-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="doc-info">
+                        <h4>Introduction to Machine Learning</h4>
+                        <p>Comprehensive guide to ML algorithms with practical examples in Python. Covers supervised and unsupervised learning.</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+                            <span><i class="fas fa-user"></i> Prof. Andrew Ng</span>
+                            <span><i class="fas fa-calendar"></i> Updated: 2023-10-15</span>
+                            <span><i class="fas fa-eye"></i> 12,450 views</span>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-star"></i> Save
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <div class="doc-info">
+                        <h4>Business Strategy Framework</h4>
+                        <p>Presentation on modern business strategy models including SWOT analysis, Porter's Five Forces, and Blue Ocean Strategy.</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+                            <span><i class="fas fa-user"></i> Dr. Michael Porter</span>
+                            <span><i class="fas fa-calendar"></i> Updated: 2023-09-22</span>
+                            <span><i class="fas fa-eye"></i> 8,920 views</span>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-star"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Features Section -->
+        <section class="ai-features" id="ai">
+            <h2 class="section-title">AI-Powered Learning Tools</h2>
+            <div class="ai-cards">
+                <div class="ai-card">
+                    <h3><i class="fas fa-robot"></i> Ask AI Beta</h3>
+                    <p>Upload any document (up to 1000 pages) and query our AI for summaries, key point extraction, and Q&A. Perfect for research and study.</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem; background-color: rgba(255,255,255,0.1); color: white; border-color: white;">
+                        Try Beta Feature
+                    </button>
+                </div>
+                
+                <div class="ai-card">
+                    <h3><i class="fas fa-concierge-bell"></i> AI Concierge</h3>
+                    <p>Describe your interests in natural language and get personalized book recommendations from our catalog of millions of titles.</p>
+                    <button class="btn btn-outline" style="margin-top: 1rem; background-color: rgba(255,255,255,0.1); color: white; border-color: white;">
+                        Get Recommendations
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ad Space -->
+        <div class="ads-section">
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-space vertical">
+                    <!-- Google AdSense Vertical Ad Unit -->
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <i class="fas fa-ad" style="font-size: 2rem; color: #ccc; margin-bottom: 0.5rem;"></i>
+                        <div>Google AdSense Ad Unit (300x250)</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; text-align: center;">Ad Unit ID: ca-pub-123456789</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Architecture Section -->
+        <section class="architecture-section" id="architecture">
+            <h2 class="section-title">Technical Architecture</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">
+                KnowledgeHub is built on a modern microservices architecture for scalability, reliability, and performance.
+            </p>
+            
+            <div class="architecture-diagram">
+                <div class="service-node">
+                    <h4>User Service</h4>
+                    <p>Authentication, profiles, followers, preferences</p>
+                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <i class="fas fa-database"></i> PostgreSQL
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <h4>Upload Service</h4>
+                    <p>Document processing, format validation, virus scanning</p>
+                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <i class="fas fa-shield-alt"></i> ClamAV Integration
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <h4>Catalog Service</h4>
+                    <p>Document metadata, search indexing, categorization</p>
+                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <i class="fas fa-search"></i> Elasticsearch
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <h4>AI Service</h4>
+                    <p>RAG for document Q&A, vector embeddings for recommendations</p>
+                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <i class="fas fa-brain"></i> OpenAI / Hugging Face
+                    </div>
+                </div>
+                
+                <div class="service-node">
+                    <h4>Payment Service</h4>
+                    <p>Subscription billing, fair-use throttling, ad serving</p>
+                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <i class="fas fa-credit-card"></i> Stripe / PayPal
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div>
+                    <h4>Content Delivery</h4>
+                    <p>Global CDN for fast document downloads and audiobook streaming. S3/Blob storage for actual content files with redundancy.</p>
+                </div>
+                
+                <div>
+                    <h4>Monetization System</h4>
+                    <p>Freemium model with ad-supported free tier and premium subscription. Partnership program with services like MUBI and Blinkist.</p>
+                </div>
+                
+                <div>
+                    <h4>Admin Dashboard</h4>
+                    <p>Comprehensive admin system for catalog management, partnership tracking, and monitoring fair-use thresholds.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>KnowledgeHub</h3>
+                    <p style="color: #b0b0b0; margin-bottom: 1.5rem;">
+                        The world's largest digital library and document sharing platform for learners and educators.
+                    </p>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" style="color: white; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">DocHub</a></li>
+                        <li><a href="#">ReadHub</a></li>
+                        <li><a href="#">SlideHub</a></li>
+                        <li><a href="#">AI Tools</a></li>
+                        <li><a href="#">Premium Subscription</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">University Partnerships</a></li>
+                        <li><a href="#">Become an Affiliate</a></li>
+                        <li><a href="#">Content Guidelines</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">Copyright</a></li>
+                        <li><a href="#">GDPR Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 KnowledgeHub. All rights reserved. | Designed as a comprehensive digital content platform prototype</p>
+                <p style="margin-top: 0.5rem; font-size: 0.8rem;">This is a demo interface. Actual implementation requires backend services and infrastructure.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab Switching for Categories
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                button.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // File Upload Functionality
+        const dropArea = document.getElementById('dropArea');
+        const browseBtn = document.getElementById('browseBtn');
+        const fileInput = document.getElementById('fileInput');
+        const uploadBtn = document.getElementById('uploadBtn');
+        
+        // Browse button click
+        browseBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+        
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                handleFileSelection(file);
+            }
+        });
+        
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.style.backgroundColor = 'rgba(67, 97, 238, 0.05)';
+            dropArea.style.borderColor = 'var(--accent)';
+        }
+        
+        function unhighlight() {
+            dropArea.style.backgroundColor = '';
+            dropArea.style.borderColor = 'var(--primary)';
+        }
+        
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const file = dt.files[0];
+            handleFileSelection(file);
+        }
+        
+        function handleFileSelection(file) {
+            // Validate file type
+            const validTypes = ['application/pdf', 
+                               'application/msword', 
+                               'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                               'application/vnd.ms-powerpoint',
+                               'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+            
+            if (!validTypes.includes(file.type)) {
+                alert('Please upload only PDF, DOC, DOCX, PPT, or PPTX files.');
+                return;
+            }
+            
+            // Validate file size (100MB max)
+            const maxSize = 100 * 1024 * 1024; // 100MB in bytes
+            if (file.size > maxSize) {
+                alert('File size exceeds the 100MB limit.');
+                return;
+            }
+            
+            // Update UI to show selected file
+            dropArea.innerHTML = `
+                <div class="upload-icon">
+                    <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                </div>
+                <h3>${file.name}</h3>
+                <p>${(file.size / (1024*1024)).toFixed(2)} MB • ${file.type}</p>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--success);">
+                    <i class="fas fa-shield-alt"></i> File ready for upload
+                </p>
+                <button class="btn btn-outline" style="margin-top: 1.5rem;" id="changeFileBtn">
+                    <i class="fas fa-exchange-alt"></i> Change File
+                </button>
+            `;
+            
+            // Add event listener to the new button
+            document.getElementById('changeFileBtn').addEventListener('click', () => {
+                fileInput.click();
+            });
+        }
+        
+        // Upload button click
+        uploadBtn.addEventListener('click', () => {
+            const title = document.getElementById('docTitle').value;
+            const category = document.getElementById('docCategory').value;
+            const subject = document.getElementById('docSubject').value;
+            const description = document.getElementById('docDescription').value;
+            const termsChecked = document.getElementById('termsCheck').checked;
+            
+            if (!title || !category || !subject || !description) {
+                alert('Please fill in all required fields (marked with *).');
+                return;
+            }
+            
+            if (!termsChecked) {
+                alert('You must agree to the Terms of Service to upload documents.');
+                return;
+            }
+            
+            // Simulate upload process
+            uploadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Uploading...';
+            uploadBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Document uploaded successfully! It will be available after verification (virus scan and format validation).');
+                uploadBtn.innerHTML = '<i class="fas fa-upload"></i> Upload Document';
+                uploadBtn.disabled = false;
+                
+                // Reset form
+                document.getElementById('docTitle').value = '';
+                document.getElementById('docCategory').value = '';
+                document.getElementById('docSubject').value = '';
+                document.getElementById('docTags').value = '';
+                document.getElementById('docDescription').value = '';
+                document.getElementById('termsCheck').checked = true;
+                
+                // Reset upload area
+                dropArea.innerHTML = `
+                    <div class="upload-icon">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Drag & Drop Your Files Here</h3>
+                    <p>Supported formats: PDF, DOC, DOCX, PPT, PPTX (Max size: 100MB)</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">
+                        <i class="fas fa-shield-alt"></i> All files are scanned for viruses automatically
+                    </p>
+                    <button class="btn btn-primary" style="margin-top: 1.5rem;" id="browseBtn">
+                        <i class="fas fa-folder-open"></i> Browse Files
+                    </button>
+                `;
+                
+                // Reattach event listener to the new browse button
+                document.getElementById('browseBtn').addEventListener('click', () => {
+                    fileInput.click();
+                });
+            }, 2000);
+        });
+        
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const searchResults = document.getElementById('searchResults');
+        
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+        
+        function performSearch() {
+            const query = searchInput.value.trim();
+            
+            if (!query) {
+                searchResults.innerHTML = `
+                    <h3 style="margin-bottom: 1.5rem;">Popular Documents</h3>
+                    ${searchResults.innerHTML.split('<h3 style="margin-bottom: 1.5rem;">Popular Documents</h3>')[1]}
+                `;
+                return;
+            }
+            
+            // Simulate search results
+            searchResults.innerHTML = `
+                <h3 style="margin-bottom: 1.5rem;">Search Results for "${query}"</h3>
+                <div class="document-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="doc-info">
+                        <h4>${query} - Research Paper</h4>
+                        <p>Academic research paper on ${query} with comprehensive analysis and references.</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+                            <span><i class="fas fa-user"></i> Research Team</span>
+                            <span><i class="fas fa-calendar"></i> 2023</span>
+                            <span><i class="fas fa-eye"></i> 1,240 views</span>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-star"></i> Save
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="document-card">
+                    <div class="doc-icon">
+                        <i class="fas fa-file-powerpoint"></i>
+                    </div>
+                    <div class="doc-info">
+                        <h4>Introduction to ${query}</h4>
+                        <p>Presentation slides covering the fundamentals of ${query} with examples and case studies.</p>
+                        <div style="display: flex; gap: 1rem; margin-top: 0.5rem; font-size: 0.9rem; color: var(--gray);">
+                            <span><i class="fas fa-user"></i> Prof. Jane Smith</span>
+                            <span><i class="fas fa-calendar"></i> 2022</span>
+                            <span><i class="fas fa-eye"></i> 3,450 views</span>
+                        </div>
+                    </div>
+                    <div class="doc-actions">
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-download"></i> Download
+                        </button>
+                        <button class="btn btn-outline" style="padding: 0.5rem 1rem;">
+                            <i class="fas fa-star"></i> Save
+                        </button>
+                    </div>
+                </div>
+                
+                <p style="text-align: center; margin-top: 2rem; color: var(--gray);">
+                    Showing 2 of 1,240 results for "${query}"
+                </p>
+            `;
+        }
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+        const userActions = document.querySelector('.user-actions');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            // Toggle display of navigation elements
+            const isVisible = mainNav.style.display === 'flex';
+            
+            if (isVisible) {
+                mainNav.style.display = 'none';
+                userActions.style.display = 'none';
+            } else {
+                mainNav.style.display = 'flex';
+                mainNav.style.flexDirection = 'column';
+                mainNav.style.position = 'absolute';
+                mainNav.style.top = '100%';
+                mainNav.style.left = '0';
+                mainNav.style.width = '100%';
+                mainNav.style.backgroundColor = 'white';
+                mainNav.style.padding = '1rem';
+                mainNav.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+                
+                userActions.style.display = 'flex';
+                userActions.style.flexDirection = 'column';
+                userActions.style.position = 'absolute';
+                userActions.style.top = 'calc(100% + 180px)';
+                userActions.style.left = '0';
+                userActions.style.width = '100%';
+                userActions.style.backgroundColor = 'white';
+                userActions.style.padding = '1rem';
+                userActions.style.boxShadow = '0 5px 10px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav link
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                }
+            });
+        });
+        
+        // SEO Optimization: Meta tags are already in the head section
+        // Additional SEO could include structured data, but for this demo we'll keep it simple
+    </script>
+</body>
+</html>
