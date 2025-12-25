@@ -793,7 +793,7 @@
                         <div style="display: flex; flex-direction: column; align-items: center;">
                             <i class="fas fa-ad" style="font-size: 2rem; color: #ccc; margin-bottom: 0.5rem;"></i>
                             <div>Google AdSense Ad Unit (728x90)</div>
-                            <div style="font-size: 0.8rem; margin-top: 0.3rem;">Ad Unit ID: ca-pub-123456789</div>
+                            <div style="font-size: 0.8rem; margin-top: 0.3rem;">Ad Unit ID: ca-app-pub-8123763654650570/3755223151</div>
                         </div>
                     </div>
                     <div style="font-size: 0.8rem; color: #666; text-align: center;">
@@ -1075,7 +1075,7 @@
                     <div style="display: flex; flex-direction: column; align-items: center;">
                         <i class="fas fa-ad" style="font-size: 2rem; color: #ccc; margin-bottom: 0.5rem;"></i>
                         <div>Google AdSense Ad Unit (300x250)</div>
-                        <div style="font-size: 0.8rem; margin-top: 0.3rem; text-align: center;">Ad Unit ID: ca-pub-123456789</div>
+                        <div style="font-size: 0.8rem; margin-top: 0.3rem; text-align: center;">Ad Unit ID: ca-app-pub-8123763654650570/3755223151</div>
                     </div>
                 </div>
             </div>
